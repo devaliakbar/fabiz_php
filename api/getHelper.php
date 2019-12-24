@@ -27,7 +27,13 @@ function addCustomer($conn, $timeStamp)
                         $rows[Customer::$COLUMN_DAY] = $row[Customer::$COLUMN_DAY];
                         $rows[Customer::$COLUMN_PHONE] = $row[Customer::$COLUMN_PHONE];
                         $rows[Customer::$COLUMN_EMAIL] = $row[Customer::$COLUMN_EMAIL];
-                        $rows[Customer::$COLUMN_ADDRESS] = $row[Customer::$COLUMN_ADDRESS];
+
+                        $rows[Customer::$COLUMN_ADDRESS_AREA] = $row[Customer::$COLUMN_ADDRESS];
+                        $rows[Customer::$COLUMN_ADDRESS_ROAD] = $row[Customer::$COLUMN_ADDRESS];
+                        $rows[Customer::$COLUMN_ADDRESS_BLOCK] = $row[Customer::$COLUMN_ADDRESS];
+                        $rows[Customer::$COLUMN_ADDRESS_SHOP_NUM] = $row[Customer::$COLUMN_ADDRESS];
+
+
                         $rows[Customer::$COLUMN_TELEPHONE] = $row[Customer::$COLUMN_TELEPHONE];
                         $rows[Customer::$COLUMN_VAT_NO] = $row[Customer::$COLUMN_VAT_NO];
                     }

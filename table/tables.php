@@ -68,7 +68,12 @@ class Customer
     public static $COLUMN_DAY = "tb_customer_day";
     public static $COLUMN_PHONE = "tb_customer_phone";
     public static $COLUMN_EMAIL = "tb_customer_email";
-    public static $COLUMN_ADDRESS = "tb_customer_address";
+
+    public static $COLUMN_ADDRESS_AREA = "tb_customer_address_area";
+    public static $COLUMN_ADDRESS_ROAD = "tb_customer_address_road";
+    public static $COLUMN_ADDRESS_BLOCK = "tb_customer_address_block";
+    public static $COLUMN_ADDRESS_SHOP_NUM = "tb_customer_address_shop_num";
+
     public static $COLUMN_TELEPHONE = "tb_customer_telephone";
     public static $COLUMN_VAT_NO = "tb_customer_vat_no";
 

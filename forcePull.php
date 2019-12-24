@@ -62,7 +62,12 @@ if ($version != $app_version) {
                     $temp[Customer::$COLUMN_DAY] = $row[Customer::$COLUMN_DAY];
                     $temp[Customer::$COLUMN_PHONE] = $row[Customer::$COLUMN_PHONE];
                     $temp[Customer::$COLUMN_EMAIL] = $row[Customer::$COLUMN_EMAIL];
-                    $temp[Customer::$COLUMN_ADDRESS] = $row[Customer::$COLUMN_ADDRESS];
+
+                    $temp[Customer::$COLUMN_ADDRESS_AREA] = $row[Customer::$COLUMN_ADDRESS_AREA];
+                    $temp[Customer::$COLUMN_ADDRESS_ROAD] = $row[Customer::$COLUMN_ADDRESS_ROAD];
+                    $temp[Customer::$COLUMN_ADDRESS_BLOCK] = $row[Customer::$COLUMN_ADDRESS_BLOCK];
+                    $temp[Customer::$COLUMN_ADDRESS_SHOP_NUM] = $row[Customer::$COLUMN_ADDRESS_SHOP_NUM];
+
                     $temp[Customer::$COLUMN_TELEPHONE] = $row[Customer::$COLUMN_TELEPHONE];
                     $temp[Customer::$COLUMN_VAT_NO] = $row[Customer::$COLUMN_VAT_NO];
                     array_push($cursorArray, $temp);

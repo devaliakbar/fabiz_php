@@ -43,6 +43,14 @@ if (mysqli_query($conn, $StaffTableQuery)) {
     } else {
         echo "<br>Failed To Insert Dummy Data";
     }
+    $insertDummyStaff = "INSERT INTO `tb_staff`(`tb_staff_id`, `tb_staff_name`, `tb_staff_username`, `tb_staff_password`, `tb_staff_email`,
+    `tb_staff_precision`, `tb_staff_force`, `tb_staff_update`,`tb_staff_pause`)
+   VALUES ('2','AKBAR','akbar','akbar','akbar@gmail.com','2','1','0','0')";
+    if (mysqli_query($conn, $insertDummyStaff)) {
+        echo "<br>Successfully Inserted Dummy Data";
+    } else {
+        echo "<br>Failed To Insert Dummy Data";
+    }
 } else {
     echo "Error creating table: " . mysqli_error($conn);
 }
@@ -80,7 +88,11 @@ $CustomerTableQuery = "CREATE TABLE IF NOT EXISTS " . Customer::$TABLE_NAME . " 
     " . Customer::$COLUMN_EMAIL . " VARCHAR(100) ,
     " . Customer::$COLUMN_TELEPHONE . " VARCHAR(100) ,
     " . Customer::$COLUMN_VAT_NO . " VARCHAR(100) ,
-    " . Customer::$COLUMN_ADDRESS . " VARCHAR(100)
+
+    " . Customer::$COLUMN_ADDRESS_AREA . " VARCHAR(100) ,
+    " . Customer::$COLUMN_ADDRESS_ROAD . " VARCHAR(100) ,
+    " . Customer::$COLUMN_ADDRESS_BLOCK . " VARCHAR(100) ,
+    " . Customer::$COLUMN_ADDRESS_SHOP_NUM . " VARCHAR(100)
 )ENGINE = INNODB;";
 
 if (mysqli_query($conn, $CustomerTableQuery)) {

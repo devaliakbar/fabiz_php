@@ -14,7 +14,13 @@ function addCustomer($conn)
         $name = $_POST[Customer::$COLUMN_NAME];
         $phone = $_POST[Customer::$COLUMN_PHONE];
         $email = $_POST[Customer::$COLUMN_EMAIL];
-        $address = $_POST[Customer::$COLUMN_ADDRESS];
+
+        $address1 = $_POST[Customer::$COLUMN_ADDRESS_AREA];
+        $address2 = $_POST[Customer::$COLUMN_ADDRESS_ROAD];
+        $address3 = $_POST[Customer::$COLUMN_ADDRESS_BLOCK];
+        $address4 = $_POST[Customer::$COLUMN_ADDRESS_SHOP_NUM];
+
+
         $telephone = $_POST[Customer::$COLUMN_TELEPHONE];
         $vatNo = $_POST[Customer::$COLUMN_VAT_NO];
         $insertCustomerQuery = "INSERT INTO
@@ -30,8 +36,12 @@ function addCustomer($conn)
             " . Customer::$COLUMN_EMAIL . ",
             " . Customer::$COLUMN_TELEPHONE . ",
             " . Customer::$COLUMN_VAT_NO . ",
-            " . Customer::$COLUMN_ADDRESS . ") VALUES
-        ('$id','$staffId','$barcode','$crNumber','$shopName','$day','$name','$phone','$email','$telephone','$vatNo','$address')";
+
+            " . Customer::$COLUMN_ADDRESS_AREA . ",
+            " . Customer::$COLUMN_ADDRESS_ROAD . ",
+            " . Customer::$COLUMN_ADDRESS_BLOCK . ",
+            " . Customer::$COLUMN_ADDRESS_SHOP_NUM . ") VALUES
+        ('$id','$staffId','$barcode','$crNumber','$shopName','$day','$name','$phone','$email','$telephone','$vatNo','$address1','$address2','$address3','$address4')";
         if (mysqli_query($conn, $insertCustomerQuery)) {
             $timeStampTime = $_POST['time_stamp'];
             $tableName = Customer::$TABLE_NAME;
