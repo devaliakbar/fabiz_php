@@ -1,7 +1,18 @@
 [
     {
-        "table_name": "precision",
-        "value": "[value]"
+        "table_name": "tb_info",
+        "value": {
+            "org_name": "[value]",
+            "address": "[value]",
+            "phone": "[value]",
+            "vat_no": "[value]"
+        }
+    },
+    {
+        "table_name": "global_precision",
+        "value": {
+            "precision": "[value]"
+        }
     },
     {
         "table_name": "tb_staff",
@@ -23,7 +34,7 @@
                 "tb_item_name": "[value]",
                 "tb_item_brand": "[value]",
                 "tb_item_category": "[value]",
-                "tb_item_price": "[value]",
+                "tb_item_price": "[value base unit based price]",
                 "item_vat_percentage": "[value]",
                 "item_vat_amount": "[value]",
                 "item_total_price": "[value]"
@@ -53,7 +64,10 @@
                 "tb_customer_day": "[value]",
                 "tb_customer_phone": "[value]",
                 "tb_customer_email": "[value]",
-                "tb_customer_address": "[value]",
+                "tb_customer_address_area": "[value]",
+                "tb_customer_address_road": "[value]",
+                "tb_customer_address_block": "[value]",
+                "tb_customer_address_shop_num": "[value]",
                 "tb_customer_telephone": "[value]",
                 "tb_customer_vat_no": "[value]"
             }

@@ -145,3 +145,13 @@ class Payment
     public static $COLUMN_AMOUNT = "tb_payment_amount";
     public static $COLUMN_TYPE = "tb_payment_type";
 }
+
+//7 TABLE RequestItem
+class RequestItem
+{
+    public static $TABLE_NAME = "tb_request_item";
+
+    public static $ID = "tb_request_item_id";
+    public static $COLUMN_NAME = "tb_request_item_name";
+    public static $COLUMN_QTY = "tb_request_item_quantity";
+}

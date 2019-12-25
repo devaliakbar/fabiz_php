@@ -20,6 +20,21 @@ if (mysqli_query($conn, $AppSyncTableQuery)) {
 
 echo "<br><br><br>";
 
+$RequestItemTableQuery = "CREATE TABLE IF NOT EXISTS " . RequestItem::$TABLE_NAME . " (
+    " . RequestItem::$ID . " BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY ,
+    " . RequestItem::$COLUMN_NAME . " VARCHAR(100) ,
+    " . RequestItem::$COLUMN_QTY . " INT
+)ENGINE = INNODB;";
+
+if (mysqli_query($conn, $RequestItemTableQuery)) {
+    echo "<br>Table RequestItem TableQuery created successfully<br>";
+} else {
+    echo "Error creating table: " . mysqli_error($conn);
+}
+
+echo "<br><br><br>";
+
+
 $StaffTableQuery = "CREATE TABLE IF NOT EXISTS " . Staff::$TABLE_NAME . " (
     " . Staff::$ID . " VARCHAR(100) PRIMARY KEY ,
     " . Staff::$COLUMN_NAME . " VARCHAR(100) ,

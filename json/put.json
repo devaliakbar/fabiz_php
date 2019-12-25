@@ -1,117 +1,128 @@
 [
     {
-        "operation": "delete",
-        "on": "[only_on = 1staff or 2customer or 3bill  or 4item ]"
-    },
-    {
-        "operation": "modify",
-        "on": "[only_on = 1staff(cannot change id) or 2customer(cannot change id and staff_id) or 3bill(cannot change id and customer_id)  or 4item(cannot change id,unit_id) or 5unit(cannot change id)]"
-    },
-    {
-        "operation": "add_staff",
-        "table_operation": [
-            {
-                "table_name": "tb_staff",
-                "operation": "insert",
-                "rows": [
-                    {
-                        "tb_staff_id": "[value]",
-                        "tb_staff_name": "[value]",
-                        "tb_staff_email": "[value]"
-                    }
-                ]
+        "operation": "info_change",
+        "table_operation": {
+            "table_name": "tb_info",
+            "value": {
+                "name": "[value]",
+                "address": "[value]",
+                "phone": "[value]",
+                "vat_no": "[value]"
             }
-        ]
+        }
     },
     {
-        "operation": "add_item",
-        "table_operation": [
-            {
-                "table_name": "item",
-                "operation": "insert",
-                "rows": [
-                    {
-                        "_id": "[value]",
-                        "barcode": "[value]",
-                        "item_name": "[value]",
-                        "item_brand": "[value]",
-                        "item_category": "[value]",
-                        "item_price": "[value]",
-                        "item_vat_percentage": "[value]",
-                        "item_vat_amount": "[value]",
-                        "item_total_price": "[value]"
-                    }
-                ]
+        "operation": "precision_change",
+        "table_operation": {
+            "table_name": "global_precision",
+            "value": {
+                "precision": "[value]"
             }
-        ]
+        }
     },
     {
-        "operation": "add_unit",
-        "table_operation": [
-            {
-                "table_name": "tb_item_unit",
-                "operation": "insert",
-                "rows": [
-                    {
-                        "tb_item_unit_id": "[value]",
-                        "tb_item_unit_unit_name": "[value]",
-                        "tb_item_unit_qty": "[value]"
-                    }
-                ]
+        "operation": "add_item | modify_item",
+        "table_operation": {
+            "table_name": "tb_item",
+            "rows": {
+                "tb_item_id": "[value]",
+                "tb_item_unit_id": "[value always base unit]",
+                "tb_item_co_barcode": "[value]",
+                "tb_item_name": "[value]",
+                "tb_item_brand": "[value]",
+                "tb_item_category": "[value]",
+                "tb_item_price": "[value base unit based price]",
+                "item_vat_percentage": "[value]",
+                "item_vat_amount": "[value]",
+                "item_total_price": "[value]"
             }
-        ]
+        }
     },
     {
-        "operation": "add_customer",
+        "operation": "delete_item",
+        "tb_item_id": "[value]"
+    },
+    {
+        "operation": "add_unit | modify_unit",
+        "table_operation": {
+            "table_name": "tb_item_unit",
+            "rows": {
+                "tb_item_unit_id": "[value]",
+                "tb_item_unit_unit_name": "[value]",
+                "tb_item_unit_qty": "[value]"
+            }
+        }
+    },
+    {
+        "operation": "delete_unit",
+        "tb_item_unit_id": "[value]"
+    },
+    {
+        "operation": "add_staff | modify_staff",
+        "table_operation": {
+            "table_name": "tb_staff",
+            "rows": {
+                "tb_staff_id": "[value]",
+                "tb_staff_name": "[value]",
+                "tb_staff_email": "[value]"
+            }
+        }
+    },
+    {
+        "operation": "delete_staff",
+        "tb_staff_id": "[value]"
+    },
+    {
+        "operation": "add_customer | modify_customer",
         "table_operation": [
             {
                 "table_name": "tb_customer",
-                "operation": "insert",
-                "rows": [
-                    {
-                        "tb_customer_id": "[value]",
-                        "tb_customer_staff_id": "[value]",
-                        "tb_customer_co_barcode": "[value]",
-                        "tb_customer_cr_no": "[value]",
-                        "tb_customer_shop_name": "[value]",
-                        "tb_customer_name": "[value]",
-                        "tb_customer_day": "[value]",
-                        "tb_customer_phone": "[value]",
-                        "tb_customer_email": "[value]",
-                        "tb_customer_address": "[value]",
-                        "tb_customer_telephone": "[value]",
-                        "tb_customer_vat_no": "[value]"
-                    }
-                ]
+                "rows": {
+                    "tb_customer_id": "[value]",
+                    "tb_customer_staff_id": "[value]",
+                    "tb_customer_co_barcode": "[value]",
+                    "tb_customer_cr_no": "[value]",
+                    "tb_customer_shop_name": "[value]",
+                    "tb_customer_name": "[value]",
+                    "tb_customer_day": "[value]",
+                    "tb_customer_phone": "[value]",
+                    "tb_customer_email": "[value]",
+                    "tb_customer_address_area": "[value]",
+                    "tb_customer_address_road": "[value]",
+                    "tb_customer_address_block": "[value]",
+                    "tb_customer_address_shop_num": "[value]",
+                    "tb_customer_telephone": "[value]",
+                    "tb_customer_vat_no": "[value]"
+                }
             }
         ]
     },
     {
-        "operation": "sales",
+        "operation": "delete_customer",
+        "tb_customer_id": "[value]"
+    },
+    {
+        "operation": "add_sales",
         "table_operation": [
             {
                 "table_name": "tb_bill_detail",
-                "operation": "insert",
-                "rows": [
-                    {
-                        "tb_bill_detail_id": "[value]",
-                        "tb_bill_detail_custid": "[value]",
-                        "tb_bill_detail_dateofbill": "[value]",
-                        "tb_bill_detail_qty": "[value]",
-                        "tb_bill_detail_price": "[value]",
-                        "total_vat_amount": "[value]",
-                        "grand_total": "[value]",
-                        "tb_bill_detail_returned_total": "[value]",
-                        "tb_bill_detail_current_total": "[value]",
-                        "tb_bill_detail_paid": "[value]",
-                        "tb_bill_detail_due": "[value]",
-                        "tb_bill_detail_discount": "[value]"
-                    }
-                ]
+                "rows": {
+                    "tb_bill_detail_id": "[value]",
+                    "tb_bill_detail_custid": "[value]",
+                    "tb_bill_detail_dateofbill": "[value]",
+                    "tb_bill_detail_qty": "[value]",
+                    "tb_bill_detail_price": "[value]",
+                    "total_vat_amount": "[value]",
+                    "grand_total": "[value]",
+                    "tb_bill_detail_returned_total": "[value]",
+                    "tb_bill_detail_current_total": "[value]",
+                    "tb_bill_detail_paid": "[value]",
+                    "tb_bill_detail_due": "[value]",
+                    "tb_bill_detail_discount": "[value]"
+                }
             },
             {
                 "table_name": "tb_cart",
-                "operation": "insert",
                 "rows": [
                     {
                         "tb_cart_id": "[value]",
@@ -135,88 +146,168 @@
             },
             {
                 "table_name": "tb_payment",
-                "operation": "insert",
-                "rows": [
-                    {
-                        "tb_payment_id": "[value]",
-                        "tb_payment_billid": "[value]",
-                        "tb_payment_dateofreturn": "[value]",
-                        "tb_payment_amount": "[value]",
-                        "tb_payment_type": "[value]"
-                    }
-                ]
+                "rows": {
+                    "tb_payment_id": "[value]",
+                    "tb_payment_billid": "[value]",
+                    "tb_payment_dateofreturn": "[value]",
+                    "tb_payment_amount": "[value]",
+                    "tb_payment_type": "[value]"
+                }
             }
         ]
     },
     {
-        "operation": "add_payment",
+        "operation": "modify_sales",
         "table_operation": [
-            {
-                "table_name": "tb_payment",
-                "operation": "insert",
-                "rows": [
-                    {
-                        "tb_payment_id": "[value]",
-                        "tb_payment_billid": "[value]",
-                        "tb_payment_dateofreturn": "[value]",
-                        "tb_payment_amount": "[value]",
-                        "tb_payment_type": "[value]"
-                    }
-                ]
-            },
             {
                 "table_name": "tb_bill_detail",
-                "operation": "update",
-                "rows": [
-                    {
-                        "tb_bill_detail_id": "[value]",
-                        "tb_bill_detail_paid": "[value]",
-                        "tb_bill_detail_due": "[value]"
-                    }
-                ]
-            }
-        ]
-    },
-    {
-        "operation": "sales_return",
-        "table_operation": [
-            {
-                "table_name": "tb_sales_return",
-                "operation": "insert",
-                "rows": [
-                    {
-                        "tb_sales_return_id": "[value]",
-                        "tb_sales_return_dateofreturn": "[value]",
-                        "tb_sales_return_billid": "[value]",
-                        "tb_sales_return_itemid": "[value]",
-                        "tb_sales_return_unit_id": "[value]",
-                        "tb_sales_return_price": "[value]",
-                        "tb_sales_return_qty": "[value]",
-                        "tb_sales_return_total": "[value]"
-                    }
-                ]
+                "rows": {
+                    "tb_bill_detail_id": "[value]",
+                    "tb_bill_detail_custid": "[value]",
+                    "tb_bill_detail_dateofbill": "[value]",
+                    "tb_bill_detail_qty": "[value]",
+                    "tb_bill_detail_price": "[value]",
+                    "total_vat_amount": "[value]",
+                    "grand_total": "[value]",
+                    "tb_bill_detail_returned_total": "[value]",
+                    "tb_bill_detail_current_total": "[value]",
+                    "tb_bill_detail_paid": "[value]",
+                    "tb_bill_detail_due": "[value]",
+                    "tb_bill_detail_discount": "[value]"
+                }
             },
             {
-                "table_name": "sales_cart",
-                "operation": "update",
+                "table_name": "tb_cart",
                 "rows": [
                     {
                         "tb_cart_id": "[value]",
+                        "tb_cart_billid": "[value]",
+                        "tb_cart_itemid": "[value]",
+                        "tb_cart_unit_id": "[value]",
+                        "tb_cart_name": "[value]",
+                        "tb_cart_brand": "[value]",
+                        "tb_cart_category": "[value]",
+                        "tb_cart_price": "[value]",
+                        "item_vat_percentage": "[value]",
+                        "item_vat_amount": "[value]",
+                        "item_total_price": "[value]",
+                        "tb_cart_qty": "[value]",
+                        "tb_cart_total": "[value]",
+                        "total_vat_amount": "[value]",
+                        "grand_total": "[value]",
                         "tb_cart_returnqty": "[value]"
                     }
                 ]
+            }
+        ]
+    },
+    {
+        "operation": "delete_sales",
+        "tb_bill_detail_id": "[value]"
+    },
+    {
+        "operation": "add_payment | modify_payment",
+        "table_operation": [
+            {
+                "table_name": "tb_payment",
+                "rows": {
+                    "tb_payment_id": "[value]",
+                    "tb_payment_billid": "[value]",
+                    "tb_payment_dateofreturn": "[value]",
+                    "tb_payment_amount": "[value]",
+                    "tb_payment_type": "[value]"
+                }
             },
             {
                 "table_name": "tb_bill_detail",
-                "operation": "update",
-                "rows": [
-                    {
-                        "tb_bill_detail_id": "[value]",
-                        "tb_bill_detail_returned_total": "[value]",
-                        "tb_bill_detail_current_total": "[value]",
-                        "tb_bill_detail_due": "[value]"
-                    }
-                ]
+                "rows": {
+                    "tb_bill_detail_id": "[value]",
+                    "tb_bill_detail_paid": "[value]",
+                    "tb_bill_detail_due": "[value]"
+                }
+            }
+        ]
+    },
+    {
+        "operation": "delete_payment",
+        "table_operation": [
+            {
+                "table_name": "tb_payment",
+                "tb_payment_id": "[value]"
+            },
+            {
+                "table_name": "tb_bill_detail",
+                "rows": {
+                    "tb_bill_detail_id": "[value]",
+                    "tb_bill_detail_paid": "[value]",
+                    "tb_bill_detail_due": "[value]"
+                }
+            }
+        ]
+    },
+    {
+        "operation": "add_sales_return | modify_sales_return",
+        "table_operation": [
+            {
+                "table_name": "tb_sales_return",
+                "rows": {
+                    "tb_sales_return_id": "[value]",
+                    "tb_sales_return_dateofreturn": "[value]",
+                    "tb_sales_return_billid": "[value]",
+                    "tb_sales_return_itemid": "[value]",
+                    "tb_sales_return_unit_id": "[value]",
+                    "tb_sales_return_price": "[value]",
+                    "tb_sales_return_item_vat_percentage": "[value]",
+                    "tb_sales_return_item_vat_amount": "[value]",
+                    "tb_sales_return_item_total_price": "[value]",
+                    "tb_sales_return_qty": "[value]",
+                    "tb_sales_return_total": "[value]",
+                    "tb_sales_return_total_vat_amount": "[value]",
+                    "tb_sales_return_grand_total": "[value]"
+                }
+            },
+            {
+                "table_name": "tb_cart",
+                "rows": {
+                    "tb_cart_id": "[value]",
+                    "tb_cart_returnqty": "[value]"
+                }
+            },
+            {
+                "table_name": "tb_bill_detail",
+                "rows": {
+                    "tb_bill_detail_id": "[value]",
+                    "tb_bill_detail_returned_total": "[value]",
+                    "tb_bill_detail_current_total": "[value]",
+                    "tb_bill_detail_due": "[value]"
+                }
+            }
+        ]
+    },
+    {
+        "operation": "delete_sales_return",
+        "table_operation": [
+            {
+                "table_name": "tb_sales_return",
+                "rows": {
+                    "tb_sales_return_id": "[value]"
+                }
+            },
+            {
+                "table_name": "tb_cart",
+                "rows": {
+                    "tb_cart_id": "[value]",
+                    "tb_cart_returnqty": "[value]"
+                }
+            },
+            {
+                "table_name": "tb_bill_detail",
+                "rows": {
+                    "tb_bill_detail_id": "[value]",
+                    "tb_bill_detail_returned_total": "[value]",
+                    "tb_bill_detail_current_total": "[value]",
+                    "tb_bill_detail_due": "[value]"
+                }
             }
         ]
     }
