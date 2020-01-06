@@ -1,6 +1,30 @@
 <?php
+function requestItem($conn)
+{
+    $returnOpArray = array();
+    $returnOpArray['operation'] = 'requet_item';
+
+    $tableOperation = array();
+    $tableOperation['table_name'] = RequestItem::$TABLE_NAME;
+    $tableOperation['operation'] = "insert";
+    $selectRequestItem = "SELECT * FROM " . RequestItem::$TABLE_NAME;
+    $selectRequestItemResult = mysqli_query($conn, $selectRequestItem);
+    if (mysqli_num_rows($selectRequestItemResult) > 0) {
+        $rows = array();
+        while ($row = mysqli_fetch_assoc($selectRequestItemResult)) {
+            $crow = array();
+            $crow[RequestItem::$COLUMN_NAME] = $row[RequestItem::$COLUMN_NAME];
+            $crow[RequestItem::$COLUMN_QTY] = $row[RequestItem::$COLUMN_QTY];
+            array_push($rows, $crow);
+        }
+    }
+    $tableOperation['row'] = $rows;
+    $returnOpArray['table_operation'] = $tableOperation;
+    return $returnOpArray;
+}
+
 function addCustomer($conn, $timeStamp)
-{ 
+{
     $returnOpArray = array();
     $returnOpArray['operation'] = 'add_customer';
     $selectRawQuery = "SELECT * FROM " . AppSync::$TABLE_NAME . " WHERE " . AppSync::$COLUMN_TIMESTAMP . " ='$timeStamp' ORDER BY " . AppSync::$ID . " ASC";
@@ -32,7 +56,6 @@ function addCustomer($conn, $timeStamp)
                         $rows[Customer::$COLUMN_ADDRESS_ROAD] = $row[Customer::$COLUMN_ADDRESS];
                         $rows[Customer::$COLUMN_ADDRESS_BLOCK] = $row[Customer::$COLUMN_ADDRESS];
                         $rows[Customer::$COLUMN_ADDRESS_SHOP_NUM] = $row[Customer::$COLUMN_ADDRESS];
-
 
                         $rows[Customer::$COLUMN_TELEPHONE] = $row[Customer::$COLUMN_TELEPHONE];
                         $rows[Customer::$COLUMN_VAT_NO] = $row[Customer::$COLUMN_VAT_NO];
@@ -73,15 +96,15 @@ function addSales($conn, $timeStamp)
                         $rows[BillDetail::$COLUMN_QTY] = $row[BillDetail::$COLUMN_QTY];
                         $rows[BillDetail::$COLUMN_PRICE] = $row[BillDetail::$COLUMN_PRICE];
 
-                        $rows[BillDetail::$TABLE_NAME."_total_vat_amount"] = '0';
-                        $rows[BillDetail::$TABLE_NAME."_grand_total"] = $row[BillDetail::$COLUMN_PRICE];
+                        $rows[BillDetail::$TABLE_NAME . "_total_vat_amount"] = '0';
+                        $rows[BillDetail::$TABLE_NAME . "_grand_total"] = $row[BillDetail::$COLUMN_PRICE];
 
                         $rows[BillDetail::$COLUMN_RETURNED_TOTAL] = $row[BillDetail::$COLUMN_RETURNED_TOTAL];
                         $rows[BillDetail::$COLUMN_CURRENT_TOTAL] = $row[BillDetail::$COLUMN_CURRENT_TOTAL];
                         $rows[BillDetail::$COLUMN_PAID] = $row[BillDetail::$COLUMN_PAID];
                         $rows[BillDetail::$COLUMN_DUE] = $row[BillDetail::$COLUMN_DUE];
                         $rows[BillDetail::$COLUMN_DISCOUNT] = $row[BillDetail::$COLUMN_DISCOUNT];
-                    } 
+                    }
                 }
                 $ttableOperation['row'] = $rows;
                 array_push($tableOperation, $ttableOperation);
@@ -103,14 +126,14 @@ function addSales($conn, $timeStamp)
                         $rows[Cart::$COLUMN_CATEGORY] = $row[Cart::$COLUMN_CATEGORY];
                         $rows[Cart::$COLUMN_PRICE] = $row[Cart::$COLUMN_PRICE];
 
-                        $rows[Cart::$TABLE_NAME."_item_vat_percentage"] = '0';
-                        $rows[Cart::$TABLE_NAME."_item_vat_amount"] = '0';
-                        $rows[Cart::$TABLE_NAME."_item_total_price"] = $row[Cart::$COLUMN_PRICE];
+                        $rows[Cart::$TABLE_NAME . "_item_vat_percentage"] = '0';
+                        $rows[Cart::$TABLE_NAME . "_item_vat_amount"] = '0';
+                        $rows[Cart::$TABLE_NAME . "_item_total_price"] = $row[Cart::$COLUMN_PRICE];
 
                         $rows[Cart::$COLUMN_QTY] = $row[Cart::$COLUMN_QTY];
                         $rows[Cart::$COLUMN_TOTAL] = $row[Cart::$COLUMN_TOTAL];
-                        $rows[Cart::$TABLE_NAME."_total_vat_amount"] = '0';
-                        $rows[Cart::$TABLE_NAME."_grand_total"] =  $row[Cart::$COLUMN_TOTAL];
+                        $rows[Cart::$TABLE_NAME . "_total_vat_amount"] = '0';
+                        $rows[Cart::$TABLE_NAME . "_grand_total"] = $row[Cart::$COLUMN_TOTAL];
                         $rows[Cart::$COLUMN_RETURN_QTY] = $row[Cart::$COLUMN_RETURN_QTY];
                     }
                 }
@@ -220,15 +243,15 @@ function addSalesReturn($conn, $timeStamp)
                         $rows[SalesReturn::$COLUMN_UNIT_ID] = $row[SalesReturn::$COLUMN_UNIT_ID];
                         $rows[SalesReturn::$COLUMN_PRICE] = $row[SalesReturn::$COLUMN_PRICE];
 
-                        $rows[SalesReturn::$TABLE_NAME."_item_vat_percentage"] = '0';
-                        $rows[SalesReturn::$TABLE_NAME."_item_vat_amount"] = '0';
-                        $rows[SalesReturn::$TABLE_NAME."_item_total_price"] = $row[COLUMN_TOTAL::$COLUMN_PRICE];
+                        $rows[SalesReturn::$TABLE_NAME . "_item_vat_percentage"] = '0';
+                        $rows[SalesReturn::$TABLE_NAME . "_item_vat_amount"] = '0';
+                        $rows[SalesReturn::$TABLE_NAME . "_item_total_price"] = $row[SalesReturn::$COLUMN_PRICE];
 
                         $rows[SalesReturn::$COLUMN_QTY] = $row[SalesReturn::$COLUMN_QTY];
                         $rows[SalesReturn::$COLUMN_TOTAL] = $row[SalesReturn::$COLUMN_TOTAL];
 
-                        $rows[SalesReturn::$TABLE_NAME."_total_vat_amount"] = '0';
-                        $rows[SalesReturn::$TABLE_NAME."_grand_total"] =  $row[SalesReturn::$COLUMN_TOTAL];
+                        $rows[SalesReturn::$TABLE_NAME . "_total_vat_amount"] = '0';
+                        $rows[SalesReturn::$TABLE_NAME . "_grand_total"] = $row[SalesReturn::$COLUMN_TOTAL];
                     }
                 }
                 $ttableOperation['row'] = $rows;

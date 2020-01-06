@@ -3,6 +3,54 @@ include 'common/common.php';
 
 $itemInsert = false;
 
+$GlobalPrecisionTableQuery = "CREATE TABLE IF NOT EXISTS " . GlobalPrecision::$TABLE_NAME . " (
+    " . GlobalPrecision::$COLUMN_PRECISION . " VARCHAR(100)
+)ENGINE = INNODB;";
+
+
+if (mysqli_query($conn, $GlobalPrecisionTableQuery)) {
+    echo "<br>Table GlobalPrecisionTable created successfully<br>";
+} else {
+    echo "Error creating table: " . mysqli_error($conn);
+}
+
+$insertPrecision = "INSERT INTO tb_global_precision(g_precision) VALUES ('1')";
+
+if (mysqli_query($conn, $insertPrecision)) {
+    echo "<br>Successfully Inserted Precision";
+} else {
+    echo "<br>Failed To Insert Precision";
+}
+
+echo "<br><br><br>";
+
+$InfoTableQuery = "CREATE TABLE IF NOT EXISTS " . Info::$TABLE_NAME . " (
+    " . Info::$COLUMN_ORG_NAME . " VARCHAR(100) ,
+    " . Info::$COLUMN_ADDRESS . " VARCHAR(100) ,
+    " . Info::$COLUMN_PHONE . " VARCHAR(100) ,
+    " . Info::$COLUMN_VAT_NO . " VARCHAR(100)
+)ENGINE = INNODB;";
+
+if (mysqli_query($conn, $InfoTableQuery)) {
+    echo "<br>Table InfoTableQuery created successfully<br>";
+} else {
+    echo "Error creating table: " . mysqli_error($conn);
+}
+
+$insertDummyAddress = "INSERT INTO `tb_info`( `tb_info_org_name`, `tb_info_address`,
+`tb_info_phone`, `tb_info_vat_no`)
+   VALUES ('NAME','ADDRESS','PHONE','VAT NO')";
+    if (mysqli_query($conn, $insertDummyAddress)) {
+        echo "<br>Successfully Inserted DummyAddress";
+    } else {
+        echo "<br>Failed To Insert DummyAddress";
+    }
+
+echo "<br><br><br>";
+
+
+
+
 $AppSyncTableQuery = "CREATE TABLE IF NOT EXISTS " . AppSync::$TABLE_NAME . " (
     " . AppSync::$ID . " BIGINT UNSIGNED AUTO_INCREMENT PRIMARY KEY ,
     " . AppSync::$COLUMN_OP_CODE . " VARCHAR(100) ,
@@ -34,7 +82,6 @@ if (mysqli_query($conn, $RequestItemTableQuery)) {
 
 echo "<br><br><br>";
 
-
 $StaffTableQuery = "CREATE TABLE IF NOT EXISTS " . Staff::$TABLE_NAME . " (
     " . Staff::$ID . " VARCHAR(100) PRIMARY KEY ,
     " . Staff::$COLUMN_NAME . " VARCHAR(100) ,
@@ -42,25 +89,24 @@ $StaffTableQuery = "CREATE TABLE IF NOT EXISTS " . Staff::$TABLE_NAME . " (
     " . Staff::$COLUMN_SIGNATURE . " VARCHAR(1000) ,
     " . Staff::$COLUMN_PASSWORD . " VARCHAR(100) ,
     " . Staff::$COLUMN_EMAIL . " VARCHAR(100) ,
-    " . Staff::$COLUMN_PRECISION . " INT UNSIGNED AUTO_INCREMENT UNIQUE,
+    " . Staff::$COLUMN_PRECISION . " VARCHAR(100) UNIQUE,
     " . Staff::$COLUMN_FORCE . " INT ,
-    " . Staff::$COLUMN_PAUSE . " INT ,
     " . Staff::$COLUMN_UPDATE . " INT
 )ENGINE = INNODB;";
 
 if (mysqli_query($conn, $StaffTableQuery)) {
     echo "<br>Table StaffTableQuery created successfully<br>";
     $insertDummyStaff = "INSERT INTO `tb_staff`(`tb_staff_id`, `tb_staff_name`, `tb_staff_username`, `tb_staff_password`, `tb_staff_email`,
-    `tb_staff_precision`, `tb_staff_force`, `tb_staff_update`,`tb_staff_pause`)
-   VALUES ('1','ALI','ali','ali','ali@gmail.com','1','1','0','0')";
+    `tb_staff_precision`, `tb_staff_force`, `tb_staff_update`)
+   VALUES ('1','ALI','ali','ali','ali@gmail.com','1','1','0')";
     if (mysqli_query($conn, $insertDummyStaff)) {
         echo "<br>Successfully Inserted Dummy Data";
     } else {
         echo "<br>Failed To Insert Dummy Data";
     }
     $insertDummyStaff = "INSERT INTO `tb_staff`(`tb_staff_id`, `tb_staff_name`, `tb_staff_username`, `tb_staff_password`, `tb_staff_email`,
-    `tb_staff_precision`, `tb_staff_force`, `tb_staff_update`,`tb_staff_pause`)
-   VALUES ('2','AKBAR','akbar','akbar','akbar@gmail.com','2','1','0','0')";
+    `tb_staff_precision`, `tb_staff_force`, `tb_staff_update`)
+   VALUES ('2','AKBAR','akbar','akbar','akbar@gmail.com','2','1','0')";
     if (mysqli_query($conn, $insertDummyStaff)) {
         echo "<br>Successfully Inserted Dummy Data";
     } else {

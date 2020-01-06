@@ -25,7 +25,7 @@ if ( mysqli_num_rows( $selectTransactionsQueryResult ) > 0 ) {
             array_push( $transactions, addSalesReturn( $conn, $timeStamp ) );
             break;
             case 'REQUEST_ITEM':
-                //TODO
+                array_push($transactions, requestItem( $conn));
             break;
         }
     }

@@ -1,4 +1,20 @@
 <?php
+//-3 GLOBAL PRECISION
+class GlobalPrecision
+{
+    public static $TABLE_NAME = "tb_global_precision";
+    public static $COLUMN_PRECISION = "g_precision";
+}
+
+//-2 TABLE INFO
+class Info
+{
+    public static $TABLE_NAME = "tb_info";
+    public static $COLUMN_ORG_NAME = "tb_info_org_name";
+    public static $COLUMN_ADDRESS = "tb_info_address";
+    public static $COLUMN_PHONE = "tb_info_phone";
+    public static $COLUMN_VAT_NO = "tb_info_vat_no";
+}
 
 //-1 TABLE APP SYNC
 class AppSync

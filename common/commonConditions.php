@@ -2,7 +2,6 @@
 $app_version = 1;
 $forcePush_data = false;
 $update_data = false;
-$pause_sync = false;
 
 function checkUserNamePassword($conn, $username, $password, $userSignature)
 {

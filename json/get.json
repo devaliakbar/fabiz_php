@@ -1,5 +1,17 @@
 [
     {
+        "operation": "requet_item",
+        "table_operation": {
+            "table_name": "tb_request_item",
+            "rows": [
+                {
+                    "tb_request_item_name": "[value]",
+                    "tb_request_item_quantity": "[value]"
+                }
+            ]
+        }
+    },
+    {
         "operation": "add_customer",
         "table_operation": {
             "table_name": "tb_customer",
@@ -33,8 +45,8 @@
                     "tb_bill_detail_dateofbill": "[value]",
                     "tb_bill_detail_qty": "[value]",
                     "tb_bill_detail_price": "[value]",
-                    "total_vat_amount": "[value]",
-                    "grand_total": "[value]",
+                    "tb_bill_detail_total_vat_amount": "[value]",
+                    "tb_bill_detail_grand_total": "[value]",
                     "tb_bill_detail_returned_total": "[value]",
                     "tb_bill_detail_current_total": "[value]",
                     "tb_bill_detail_paid": "[value]",
@@ -44,26 +56,24 @@
             },
             {
                 "table_name": "tb_cart",
-                "rows": [
-                    {
-                        "tb_cart_id": "[value]",
-                        "tb_cart_billid": "[value]",
-                        "tb_cart_itemid": "[value]",
-                        "tb_cart_unit_id": "[value]",
-                        "tb_cart_name": "[value]",
-                        "tb_cart_brand": "[value]",
-                        "tb_cart_category": "[value]",
-                        "tb_cart_price": "[value]",
-                        "item_vat_percentage": "[value]",
-                        "item_vat_amount": "[value]",
-                        "item_total_price": "[value]",
-                        "tb_cart_qty": "[value]",
-                        "tb_cart_total": "[value]",
-                        "total_vat_amount": "[value]",
-                        "grand_total": "[value]",
-                        "tb_cart_returnqty": "[value]"
-                    }
-                ]
+                "rows": {
+                    "tb_cart_id": "[value]",
+                    "tb_cart_billid": "[value]",
+                    "tb_cart_itemid": "[value]",
+                    "tb_cart_unit_id": "[value]",
+                    "tb_cart_name": "[value]",
+                    "tb_cart_brand": "[value]",
+                    "tb_cart_category": "[value]",
+                    "tb_cart_price": "[value]",
+                    "tb_cart_item_vat_percentage": "[value]",
+                    "tb_cart_item_vat_amount": "[value]",
+                    "tb_cart_item_total_price": "[value]",
+                    "tb_cart_qty": "[value]",
+                    "tb_cart_total": "[value]",
+                    "tb_cart_total_vat_amount": "[value]",
+                    "tb_cart_grand_total": "[value]",
+                    "tb_cart_returnqty": "[value]"
+                }
             },
             {
                 "table_name": "tb_payment",
